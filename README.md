@@ -1,9 +1,8 @@
-﻿# Logiciel de Controle a Distance — Master 1 GLSI
+# Logiciel de Controle a Distance -- Master 1 GLSI
 
 Projet realise dans le cadre du module **Java Avance** (Dr. Mouhamed DIOP).
-Le logiciel permet a un poste client d'envoyer des commandes systeme a un serveur distant via une connexion TCP,
-de recuperer les resultats et de les afficher. Le principe est similaire a SSH, mais developpe integralement en Java
-avec une interface graphique Swing.
+Logiciel client-serveur TCP similaire a SSH, avec interface graphique Swing.
+Le client envoie des commandes systeme a un serveur distant qui les execute et retourne le resultat.
 
 ---
 
@@ -22,82 +21,57 @@ avec une interface graphique Swing.
 ```
 ProjetControleOrdinateur-M1/
 |
-|-- Server.java               [OK - Baye]   ecoute sur le port 5000, un thread par client
-|-- ClientHandler.java        [OK - Baye]   execution des commandes via ProcessBuilder, envoi du resultat
+|-- Server.java              [OK - Baye Moussa Diongue]   ServerSocket port 5000, thread par client
+|-- ClientHandler.java       [OK - Baye Moussa Diongue]   execution commandes ProcessBuilder, marqueur --FIN--
 |
-|-- Client.java               [A COMPLETER - Papa Amady]   connexion TCP, envoi commandes, lecture reponse
+|-- Client.java              [OK - Papa Amady Diallo]      connexion TCP, envoi commandes, lecture reponse
 |
-|-- ServerGUI.java            [A COMPLETER - Koumba]   interface Swing du serveur (liste clients + journal)
-|-- ClientHandlerGUI.java     [A COMPLETER - Koumba]   handler adapte a la GUI, notifie via log()
-|-- ClientGUI.java            [A COMPLETER - Koumba]   interface Swing du client (connexion + historique)
+|-- ServerGUI.java           [OK - Koumba Samb]            fenetre Swing serveur (liste clients + journal)
+|-- ClientHandlerGUI.java    [OK - Koumba Samb]            handler avec notification GUI via log()
+|-- ClientGUI.java           [OK - Koumba Samb]            fenetre Swing client (connexion + historique)
 |
-`-- README.md
+\-- README.md
 ```
-
-> Quand un fichier est termine, le membre concerne le commit et le push sur la branche **main** du depot.
-> L'integration finale (test multi-clients + corrections eventuelles) se fait ensemble.
 
 ---
 
 ## Principe de fonctionnement
 
 ```
-CLIENT                          SERVEUR
-  |                                |
-  |--- connexion TCP port 5000 --->|
-  |--- commande (ex: dir) -------->|  execute via ProcessBuilder
-  |<-- resultat (stdout+stderr) ---|
-  |<-- marqueur --FIN-- -----------|
-  |--- nouvelle commande... ------>|
+CLIENT                              SERVEUR
+  |                                    |
+  |--- connexion TCP port 5000 ------->|
+  |--- commande (ex: dir) ------------>|  execute via ProcessBuilder
+  |<-- resultat (stdout + stderr) -----|
+  |<-- marqueur --FIN-- ---------------|
+  |--- nouvelle commande... ---------->|
 ```
 
-Le serveur gere plusieurs clients en meme temps : chaque connexion entrante lance un thread dedie (`ClientHandler`).
-Le marqueur `--FIN--` signale la fin d'une reponse, ce qui permet au client de savoir quand arreter de lire.
+Chaque client connecte obtient son propre thread sur le serveur.
+Le marqueur `--FIN--` signale la fin d'une reponse.
 
 ---
 
 ## Compilation et execution
 
-Depuis le dossier racine (quand tous les fichiers seront presents) :
-
 ```bash
-# Compiler
+# Depuis le dossier racine (tous les .java au meme endroit)
 javac *.java
 
-# Lancer le serveur (interface graphique)
-java ServerGUI
+# Interface graphique (recommande)
+java ServerGUI   # terminal 1
+java ClientGUI   # terminal 2
 
-# Lancer le client (interface graphique) — dans un autre terminal
-java ClientGUI
-
-# Mode console pour tests rapides
-java Server   # terminal 1
-java Client   # terminal 2
+# Mode console (tests rapides)
+java Server      # terminal 1
+java Client      # terminal 2
 ```
 
-Pour tester avec plusieurs clients, ouvrir plusieurs terminaux et lancer `java ClientGUI` (ou `java Client`) autant de fois que necessaire. Le serveur les gere tous en parallele.
+Pour tester avec plusieurs clients : ouvrir plusieurs terminaux et lancer `java ClientGUI`.
 
 ---
 
-## Commandes de test utiles
-
-```bash
-# Windows
-dir
-ipconfig
-whoami
-echo test de connexion
-
-# Linux / macOS
-ls -la
-ifconfig
-whoami
-echo "test"
-```
-
----
-
-## Criteres d'evaluation (rappel)
+## Criteres d'evaluation
 
 | Critere | Poids |
 |---------|-------|
@@ -111,8 +85,8 @@ echo "test"
 
 ## Lien video de presentation
 
-> A completer apres enregistrement : [YouTube — lien a ajouter]
+> [YouTube -- lien a ajouter apres enregistrement]
 
 ---
 
-*Deadline : 12 avril 2026 — envoi a envoitp@gmail.com, objet : Projet_ControleOrdinateur_Gx*
+*Deadline : 12 avril 2026 -- mail a envoitp@gmail.com, objet : Projet_ControleOrdinateur_Gx*
