@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Interface graphique Swing du client de controle a distance.
- * Utilise la classe Client comme couche reseau.
+  Interface graphique Swing du client de controle a distance.
+  Utilise la classe Client comme couche reseau.
  * @author Koumba Samb
  */
 public class ClientGUI extends JFrame {
