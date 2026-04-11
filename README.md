@@ -1,12 +1,12 @@
 # Logiciel de Controle a Distance -- Master 1 GLSI
 
 Projet realise dans le cadre du module **Java Avance** (Dr. Mouhamed DIOP).
-Logiciel client-serveur TCP similaire a SSH, avec interface graphique Swing.
+Logiciel client-serveur TCP similaire a SSH avec interface graphique Swing.
 Le client envoie des commandes systeme a un serveur distant qui les execute et retourne le resultat.
 
 ---
 
-## Groupe
+## Groupe 6
 
 | Etudiant | Module |
 |----------|--------|
@@ -22,13 +22,13 @@ Le client envoie des commandes systeme a un serveur distant qui les execute et r
 ProjetControleOrdinateur-M1/
 |
 |-- Server.java              [OK - Baye Moussa Diongue]   ServerSocket port 5000, thread par client
-|-- ClientHandler.java       [OK - Baye Moussa Diongue]   execution commandes ProcessBuilder, marqueur --FIN--
+|-- ClientHandler.java       [OK - Baye Moussa Diongue]   ProcessBuilder, stdout+stderr, marqueur --FIN--
 |
-|-- Client.java              [OK - Papa Amady Diallo]      connexion TCP, envoi commandes, lecture reponse
+|-- Client.java              [OK - Papa Amady Diallo]     connexion TCP, envoi commandes, lecture reponse
 |
-|-- ServerGUI.java           [OK - Koumba Samb]            fenetre Swing serveur (liste clients + journal)
-|-- ClientHandlerGUI.java    [OK - Koumba Samb]            handler avec notification GUI via log()
-|-- ClientGUI.java           [OK - Koumba Samb]            fenetre Swing client (connexion + historique)
+|-- ServerGUI.java           [OK - Koumba Samb]           fenetre Swing serveur (liste clients + journal)
+|-- ClientHandlerGUI.java    [OK - Koumba Samb]           handler avec notification GUI via log()
+|-- ClientGUI.java           [OK - Koumba Samb]           fenetre Swing client (connexion + historique)
 |
 \-- README.md
 ```
@@ -47,27 +47,24 @@ CLIENT                              SERVEUR
   |--- nouvelle commande... ---------->|
 ```
 
-Chaque client connecte obtient son propre thread sur le serveur.
-Le marqueur `--FIN--` signale la fin d'une reponse.
+Chaque client obtient son propre thread sur le serveur -- connexions simultanees supportees.
 
 ---
 
 ## Compilation et execution
 
 ```bash
-# Depuis le dossier racine (tous les .java au meme endroit)
+# Compiler toutes les classes
 javac *.java
 
-# Interface graphique (recommande)
-java ServerGUI   # terminal 1
-java ClientGUI   # terminal 2
+# Interface graphique (livrable final)
+java ServerGUI    # terminal 1
+java ClientGUI    # terminal 2
 
 # Mode console (tests rapides)
-java Server      # terminal 1
-java Client      # terminal 2
+java Server       # terminal 1
+java Client       # terminal 2
 ```
-
-Pour tester avec plusieurs clients : ouvrir plusieurs terminaux et lancer `java ClientGUI`.
 
 ---
 
@@ -85,8 +82,8 @@ Pour tester avec plusieurs clients : ouvrir plusieurs terminaux et lancer `java 
 
 ## Lien video de presentation
 
-> [YouTube -- lien a ajouter apres enregistrement]
+[https://youtu.be/bOXdmmrh1W4](https://youtu.be/bOXdmmrh1W4)
 
 ---
 
-*Deadline : 12 avril 2026 -- mail a envoitp@gmail.com, objet : Projet_ControleOrdinateur_Gx*
+*Groupe 6 -- Deadline : 12 avril 2026 -- envoitp@gmail.com -- Projet_ControleOrdinateur_G6*
